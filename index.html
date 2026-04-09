@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
+<!-- saved from url=(0057)file:///Users/hashimotoyousuke/Downloads/ordy_app_13.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="ORDY焼成">
 <meta name="theme-color" content="#1a1208">
 <title>ORDY BAKERY — 焼成スケジュール</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./ordy-schedule_files/css2" rel="stylesheet">
+<script src="./ordy-schedule_files/chart.umd.min.js"></script>
 <style>
 :root {
   --bg:#faf8f4;--surface:#ffffff;--surface2:#f5f2ec;--border:#e8e2d8;--border2:#d4cbbf;
@@ -177,11 +177,11 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     <div class="logo">ORDY</div>
     <div class="btn-row">
       <button class="hbtn hbtn-green" onclick="openTomorrow()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4"></path></svg>
         明日の準備
       </button>
       <button class="hbtn hbtn-accent" onclick="openSheet()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"></path><rect x="9" y="3" width="6" height="4" rx="1"></rect><path d="M9 12h6M9 16h4"></path></svg>
         今日の指示書
       </button>
     </div>
@@ -200,10 +200,10 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
   <div class="cond">
     <div class="cond-title">
       <span>本日の条件</span>
-      <span id="wx-loading" style="font-size:10px;color:var(--text3)">天気を取得中...</span>
+      <span id="wx-loading" style="font-size: 10px; color: var(--text3); display: none;">天気を取得中...</span>
     </div>
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-      <span id="today-badge" class="weather-badge"></span>
+      <span id="today-badge" class="weather-badge" style="display: inline-block;">木曜 ☁ 曇り</span>
       <button class="manual-link" onclick="toggleManual()">手動で変更</button>
     </div>
     <div class="manual-panel" id="manual-panel">
@@ -211,13 +211,13 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
         <div class="cond-item"><label>曜日</label>
           <select id="sel-day" onchange="rebuild()">
             <option value="0.88">月曜日</option><option value="0.90">火曜日</option>
-            <option value="0.92">水曜日</option><option value="0.95" selected>木曜日</option>
+            <option value="0.92">水曜日</option><option value="0.95" selected="">木曜日</option>
             <option value="1.05">金曜日</option><option value="1.28">土曜日</option><option value="1.22">日曜日</option>
           </select>
         </div>
         <div class="cond-item"><label>天候</label>
           <select id="sel-wx" onchange="rebuild()">
-            <option value="1.00" selected>晴れ</option><option value="0.93">曇り</option>
+            <option value="1.00" selected="">晴れ</option><option value="0.93">曇り</option>
             <option value="0.78">雨</option><option value="0.65">雪</option>
           </select>
         </div>
@@ -226,27 +226,167 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
     <div class="special-row">
       <div class="cond-item"><label>特記事項</label>
         <select id="sel-sp" onchange="rebuild()">
-          <option value="1.00" selected>なし</option><option value="1.30">祝日</option>
+          <option value="1.00" selected="">なし</option><option value="1.30">祝日</option>
           <option value="1.18">連休前</option><option value="1.15">イベント</option>
         </select>
       </div>
     </div>
   </div>
 
-  <div class="metrics" id="metrics"></div>
+  <div class="metrics" id="metrics"><div class="met"><div class="met-label">本日の想定総出数</div><div class="met-value">158<span>個</span></div><div class="met-sub">全商品合計</div></div><div class="met"><div class="met-label">複数回焼成</div><div class="met-value">3<span>商品</span></div><div class="met-sub">当日リアルタイム</div></div><div class="met"><div class="met-label">前日仕込み</div><div class="met-value">11<span>商品</span></div><div class="met-sub">1日1回焼成</div></div><div class="met"><div class="met-label">補正係数</div><div class="met-value">0.88</div><div class="met-sub">曜日×天候×特記</div></div></div>
 
   <div id="page-schedule" class="page active">
     <div class="sec-hdr">商品別 焼成スケジュール</div>
-    <div class="prod-list" id="prod-list"></div>
+    <div class="prod-list" id="prod-list"><div class="prod-card" onclick="toggleDetail(&#39;croissant&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">オリジナルクロワッサン</div>
+        <div class="prod-tag" style="background:var(--blue-bg);color:var(--blue)">複数回焼成</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--green);color:#fff"><span class="btime">7:00</span><span class="bqty">10個</span></div><div class="batch-pill" style="background:#1e5fa0;color:#fff"><span class="btime">12:00</span><span class="bqty">10個</span></div><div class="batch-pill" style="background:#1e5fa0;color:#fff"><span class="btime">16:30</span><span class="bqty">10個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;kouign&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">クイニーアマン</div>
+        <div class="prod-tag" style="background:var(--blue-bg);color:var(--blue)">複数回焼成</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--green);color:#fff"><span class="btime">7:00</span><span class="bqty">5個</span></div><div class="batch-pill" style="background:#1e5fa0;color:#fff"><span class="btime">16:30</span><span class="bqty">4個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;damande&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">クロワッサンダマンド</div>
+        <div class="prod-tag" style="background:var(--blue-bg);color:var(--blue)">複数回焼成</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--green);color:#fff"><span class="btime">7:30</span><span class="bqty">6個</span></div><div class="batch-pill" style="background:#1e5fa0;color:#fff"><span class="btime">16:30</span><span class="bqty">5個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;cinnamon&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">シナモンロール</div>
+        <div class="prod-tag" style="background:var(--surface2);color:var(--text3)">前日仕込み</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">9個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;tiramisu&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">ティラミスロール</div>
+        <div class="prod-tag" style="background:var(--surface2);color:var(--text3)">前日仕込み</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">5個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;milkfrance&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">ミルクフランス</div>
+        <div class="prod-tag" style="background:var(--surface2);color:var(--text3)">前日仕込み</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">7個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;shioban&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">塩あんバター</div>
+        <div class="prod-tag" style="background:var(--surface2);color:var(--text3)">前日仕込み</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">4個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;okukuji&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">奥久慈卵のクリームパン</div>
+        <div class="prod-tag" style="background:var(--surface2);color:var(--text3)">前日仕込み</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">11個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;shokupan&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">食パン</div>
+        <div class="prod-tag" style="background:var(--surface2);color:var(--text3)">前日仕込み</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">3個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;cardamom&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1e5fa0"></div>
+        <div class="prod-name">カルダモンロール</div>
+        <div class="prod-tag" style="background:var(--surface2);color:var(--text3)">前日仕込み</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">4個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;danish&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#1a7a48"></div>
+        <div class="prod-name">デニッシュ生地</div>
+        <div class="prod-tag" style="background:var(--green-bg);color:var(--green)">生地共有</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">39個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;shiopan_g&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#b03020"></div>
+        <div class="prod-name">塩パン生地</div>
+        <div class="prod-tag" style="background:var(--green-bg);color:var(--green)">生地共有</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">21個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;sdough_w&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#a06018"></div>
+        <div class="prod-name">サワードー ホール</div>
+        <div class="prod-tag" style="background:var(--surface2);color:var(--text3)">前日仕込み</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">2個</span></div></div>
+    </div><div class="prod-card" onclick="toggleDetail(&#39;sdough_h&#39;)">
+      <div class="prod-card-head">
+        <div class="prod-dot" style="background:#a06018"></div>
+        <div class="prod-name">サワードー ハーフ</div>
+        <div class="prod-tag" style="background:var(--surface2);color:var(--text3)">前日仕込み</div>
+      </div>
+      <div class="prod-batches"><div class="batch-pill" style="background:var(--surface2);border:1px solid var(--border);color:var(--text3)"><span class="btime">7:30</span><span class="bqty">3個</span></div></div>
+    </div></div>
     <div class="sec-hdr" style="margin-top:20px">仕込み〜店頭 タイムライン</div>
     <div class="cond" style="padding:10px 14px">
-      <div class="tl-wrap"><div class="tl-inner" id="tl-all"></div></div>
+      <div class="tl-wrap"><div class="tl-inner" id="tl-all"><div class="tl-row"><div class="tl-name" style="font-size:9px;color:var(--text3)">時間</div><div class="tl-track" style="height:16px"><span class="tl-tick" style="left:0.0%">5</span><span class="tl-vline" style="left:0.0%"></span><span class="tl-tick" style="left:7.4%">6</span><span class="tl-vline" style="left:7.4%"></span><span class="tl-tick" style="left:14.8%">7</span><span class="tl-vline" style="left:14.8%"></span><span class="tl-tick" style="left:22.2%">8</span><span class="tl-vline" style="left:22.2%"></span><span class="tl-tick" style="left:29.6%">9</span><span class="tl-vline" style="left:29.6%"></span><span class="tl-tick" style="left:37.0%">10</span><span class="tl-vline" style="left:37.0%"></span><span class="tl-tick" style="left:44.4%">11</span><span class="tl-vline" style="left:44.4%"></span><span class="tl-tick" style="left:51.9%">12</span><span class="tl-vline" style="left:51.9%"></span><span class="tl-tick" style="left:59.3%">13</span><span class="tl-vline" style="left:59.3%"></span><span class="tl-tick" style="left:66.7%">14</span><span class="tl-vline" style="left:66.7%"></span><span class="tl-tick" style="left:74.1%">15</span><span class="tl-vline" style="left:74.1%"></span><span class="tl-tick" style="left:81.5%">16</span><span class="tl-vline" style="left:81.5%"></span><span class="tl-tick" style="left:88.9%">17</span><span class="tl-vline" style="left:88.9%"></span><span class="tl-tick" style="left:96.3%">18</span><span class="tl-vline" style="left:96.3%"></span></div></div><div class="tl-row"><div class="tl-name">オリジナルクロワッサン</div><div class="tl-track"><div class="tl-blk" style="left:7.4%;width:7.4%;background:#1a7a48;opacity:.25"></div><div class="tl-blk" style="left:18.5%;width:33.3%;background:#1a7a48">1</div><div class="tl-blk" style="left:33.3%;width:18.5%;background:#1e5fa0;opacity:.25"></div><div class="tl-blk" style="left:51.9%;width:33.3%;background:#1e5fa0">2</div><div class="tl-blk" style="left:66.7%;width:18.5%;background:#1e5fa0;opacity:.25"></div><div class="tl-blk" style="left:85.2%;width:7.4%;background:#1e5fa0">3</div></div></div><div class="tl-row"><div class="tl-name">クイニーアマン</div><div class="tl-track"><div class="tl-blk" style="left:7.4%;width:7.4%;background:#1a7a48;opacity:.25"></div><div class="tl-blk" style="left:18.5%;width:66.7%;background:#1a7a48">1</div><div class="tl-blk" style="left:66.7%;width:18.5%;background:#1e5fa0;opacity:.25"></div><div class="tl-blk" style="left:85.2%;width:7.4%;background:#1e5fa0">2</div></div></div><div class="tl-row"><div class="tl-name">クロワッサンダマンド</div><div class="tl-track"><div class="tl-blk" style="left:3.7%;width:14.8%;background:#1a7a48;opacity:.25"></div><div class="tl-blk" style="left:18.5%;width:66.7%;background:#1a7a48">1</div><div class="tl-blk" style="left:70.4%;width:14.8%;background:#1e5fa0;opacity:.25"></div><div class="tl-blk" style="left:85.2%;width:7.4%;background:#1e5fa0">2</div></div></div><div class="tl-row"><div class="tl-name">シナモンロール</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#1e5fa0;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">ティラミスロール</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#1e5fa0;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">ミルクフランス</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#1e5fa0;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">塩あんバター</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#1e5fa0;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">奥久慈卵のクリームパン</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#1e5fa0;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">食パン</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#1e5fa0;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">カルダモンロール</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#1e5fa0;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">デニッシュ生地</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#1a7a48;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">塩パン生地</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#b03020;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">サワードー ホール</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#a06018;opacity:.5"></div></div></div><div class="tl-row"><div class="tl-name">サワードー ハーフ</div><div class="tl-track"><div class="tl-blk" style="left:18.5%;width:74.1%;background:#a06018;opacity:.5"></div></div></div></div></div>
     </div>
   </div>
 
   <div id="page-abc" class="page">
     <div class="sec-hdr">ABC分析（1〜3月実績）</div>
-    <div id="abc-list"></div>
+    <div id="abc-list"><div class="abc-item"><div class="abc-info"><div class="abc-name">デニッシュ生地</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:75%;background:#1a7a48"></div></div>
+      <div class="abc-sub">1日平均 39個 / 構成比 25%</div></div>
+      <div class="abc-rank" style="background:var(--green-bg);color:var(--green)">A</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">オリジナルクロワッサン</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:57%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 30個 / 構成比 19%</div></div>
+      <div class="abc-rank" style="background:var(--green-bg);color:var(--green)">A</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">塩パン生地</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:39%;background:#b03020"></div></div>
+      <div class="abc-sub">1日平均 21個 / 構成比 13%</div></div>
+      <div class="abc-rank" style="background:var(--green-bg);color:var(--green)">A</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">クロワッサンダマンド</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:21%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 11個 / 構成比 7%</div></div>
+      <div class="abc-rank" style="background:var(--green-bg);color:var(--green)">A</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">奥久慈卵のクリームパン</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:21%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 11個 / 構成比 7%</div></div>
+      <div class="abc-rank" style="background:var(--blue-bg);color:var(--blue)">B</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">クイニーアマン</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:18%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 9個 / 構成比 6%</div></div>
+      <div class="abc-rank" style="background:var(--blue-bg);color:var(--blue)">B</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">シナモンロール</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:18%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 9個 / 構成比 6%</div></div>
+      <div class="abc-rank" style="background:var(--blue-bg);color:var(--blue)">B</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">ミルクフランス</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:12%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 7個 / 構成比 4%</div></div>
+      <div class="abc-rank" style="background:var(--blue-bg);color:var(--blue)">B</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">ティラミスロール</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:9%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 5個 / 構成比 3%</div></div>
+      <div class="abc-rank" style="background:var(--blue-bg);color:var(--blue)">B</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">塩あんバター</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:9%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 4個 / 構成比 3%</div></div>
+      <div class="abc-rank" style="background:var(--surface2);color:var(--text3)">C</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">カルダモンロール</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:9%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 4個 / 構成比 3%</div></div>
+      <div class="abc-rank" style="background:var(--surface2);color:var(--text3)">C</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">食パン</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:6%;background:#1e5fa0"></div></div>
+      <div class="abc-sub">1日平均 3個 / 構成比 2%</div></div>
+      <div class="abc-rank" style="background:var(--surface2);color:var(--text3)">C</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">サワードー ハーフ</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:6%;background:#a06018"></div></div>
+      <div class="abc-sub">1日平均 3個 / 構成比 2%</div></div>
+      <div class="abc-rank" style="background:var(--surface2);color:var(--text3)">C</div></div><div class="abc-item"><div class="abc-info"><div class="abc-name">サワードー ホール</div>
+      <div class="abc-bar-wrap"><div class="abc-bar" style="width:3%;background:#a06018"></div></div>
+      <div class="abc-sub">1日平均 2個 / 構成比 1%</div></div>
+      <div class="abc-rank" style="background:var(--surface2);color:var(--text3)">C</div></div></div>
   </div>
 </main>
 
@@ -296,12 +436,12 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text
 
 <nav class="bnav">
   <div class="bnav-inner">
-    <button class="bnav-tab active" onclick="showPage('schedule',this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    <button class="bnav-tab active" onclick="showPage(&#39;schedule&#39;,this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
       スケジュール
     </button>
-    <button class="bnav-tab" onclick="showPage('abc',this)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+    <button class="bnav-tab" onclick="showPage(&#39;abc&#39;,this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg>
       ABC分析
     </button>
   </div>
@@ -713,5 +853,6 @@ function showPage(name,btn){
 rebuild();
 fetchWeather().catch(()=>{});
 </script>
-</body>
-</html>
+
+
+</body></html>
